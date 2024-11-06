@@ -1,4 +1,4 @@
-package com.example.demo.impl;
+package com.example.demo.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
