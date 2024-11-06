@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.dto.UserData;
+import com.example.demo.dto.UserUpdatePassword;
 import com.example.demo.model.User;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserService;
@@ -109,6 +110,41 @@ public class DefaultUserImplementation implements UserService {
 
         return new ResponseEntity<String>("User registered with success!",HttpStatus.OK);
 
+    }
+
+    @Override
+    public ResponseEntity<String> changePassword(UserUpdatePassword data) {
+        User user = userRepo.findByUsername(data.username()).get(0);
+
+        if (user == null) {
+            return new ResponseEntity<String>("User not found.",HttpStatus.NOT_FOUND);
+
+        }
+
+        Boolean ps = verifyOverallPassword(data.newPassword());
+
+        if (!ps) {
+            return new ResponseEntity<String>("New password must submit to all requisites of validation.",HttpStatus.UNPROCESSABLE_ENTITY);
+
+        }
+
+        if (!data.newPassword().equals(data.repeatPassword())) {
+            return new ResponseEntity<String>("The passwords do not match.",HttpStatus.UNPROCESSABLE_ENTITY);
+
+        }
+
+        user.setPassword(data.newPassword());
+
+        userRepo.save(user);
+
+        return new ResponseEntity<String>("Password updated with success!",HttpStatus.OK);
+
+    }
+
+    @Override
+    public ResponseEntity<String> login(UserData user) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'login'");
     }
 
 }
