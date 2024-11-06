@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.example.demo.impl.DefaultUserImplementation;
+import com.example.demo.services.UserService;
+
 @Configuration
 public class DependencyConfiguration {
     
@@ -14,6 +17,8 @@ public class DependencyConfiguration {
 
                         // serviço User e serviço Product dependem de um serviço database (Context por exemplo), use o request
 
-    public void service() {} // add dependency here
+    public UserService userSerice() {
+        return new DefaultUserImplementation(); // for C6 exercise without security 
+    } 
 
 }
