@@ -143,8 +143,15 @@ public class DefaultUserImplementation implements UserService {
 
     @Override
     public ResponseEntity<String> login(UserData user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'login'");
+        var found = userRepo.findByUsername(user.username()).get(0);
+
+        if (found == null)
+            return ResponseEntity.status(404).build();
+
+        if (!found.getPassword().equals(user.password()))
+            return ResponseEntity.status(403).build();
+
+        return ResponseEntity.ok("welcome, user");
     }
 
 }
