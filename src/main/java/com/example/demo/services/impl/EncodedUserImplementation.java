@@ -154,7 +154,7 @@ public class EncodedUserImplementation implements UserService{
 
     @Override
     public ResponseEntity<String> login(UserData user) {
-        var found = userRepo.findByUsername(user.username()).get(0);
+        var found = userRepo.findByEmail(user.username()).get(0);
 
         if (found == null)
             return ResponseEntity.status(404).build();

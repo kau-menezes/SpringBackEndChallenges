@@ -16,7 +16,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 public class DefaultJWTService implements JWTService<Token> {
-    private final String SECRET_KEY = "euamoaamorinha0312";
+    private final String SECRET_KEY = "euamoaamorinha0312asdhgfiauqetgado4378tuihoouids8s6dh96sfhss";
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hora
 
     @Override

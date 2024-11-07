@@ -5,8 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import com.example.demo.services.impl.BycryptPassswordEncoder;
+import com.example.demo.services.impl.DefaultJWTService;
 // import com.example.demo.services.impl.DefaultUserImplementation;
 import com.example.demo.services.impl.EncodedUserImplementation;
+import com.example.demo.dto.Token;
+import com.example.demo.services.JWTService;
 import com.example.demo.services.PasswordEncoderService;
 import com.example.demo.services.UserService;
 
@@ -28,6 +31,11 @@ public class DependencyConfiguration {
     @Bean
     public PasswordEncoderService passwordEncoder() {
         return new BycryptPassswordEncoder();
+    }
+
+    @Bean
+    public JWTService<Token> jwtService() {
+        return new DefaultJWTService();
     }
 
 }
