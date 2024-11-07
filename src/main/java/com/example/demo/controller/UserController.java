@@ -32,8 +32,13 @@ public class UserController {
         return service.changePassword(user);
     }
 
+    
     /* ----------------------------------- C8 ----------------------------------- */
-
+    
+    @PostMapping("/user")
+    public ResponseEntity<String> createEncodedUser(@RequestBody UserData user) {
+        return service.createUser(user);
+    }
     
     
 }

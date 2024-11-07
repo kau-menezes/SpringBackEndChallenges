@@ -4,7 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.example.demo.services.impl.BycryptPassswordEncoder;
 import com.example.demo.services.impl.DefaultUserImplementation;
+import com.example.demo.services.impl.EncodedUserImplementation;
+import com.example.demo.services.PasswordEncoderService;
 import com.example.demo.services.UserService;
 
 @Configuration
@@ -18,7 +21,13 @@ public class DependencyConfiguration {
                         // serviço User e serviço Product dependem de um serviço database (Context por exemplo), use o request
 
     public UserService userSerice() {
-        return new DefaultUserImplementation(); // for C6 exercise without security 
+        // return new DefaultUserImplementation(); // for C6 exercise without security 
+        return new EncodedUserImplementation(); // for C8 and beyond 
     } 
+
+    @Bean
+    public PasswordEncoderService passwordEncoder() {
+        return new BycryptPassswordEncoder();
+    }
 
 }
