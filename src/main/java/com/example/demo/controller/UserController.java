@@ -31,5 +31,9 @@ public class UserController {
     public ResponseEntity<String> updatePasswordUser(@RequestBody UserUpdatePassword user) {
         return service.changePassword(user);
     }
+
+    /* ----------------------------------- C8 ----------------------------------- */
+
+    
     
 }
