@@ -24,6 +24,8 @@ public class UserController {
         return service.createUser(user);
     }
 
+    /* ----------------------------------- C7 ----------------------------------- */
+
     @PatchMapping("/changepassword")
 
     public ResponseEntity<String> updatePasswordUser(@RequestBody UserUpdatePassword user) {
